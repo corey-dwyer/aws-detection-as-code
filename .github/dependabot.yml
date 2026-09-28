@@ -1,0 +1,9 @@
+version: 2
+updates:
+  # Keeps the Features in .devcontainer/devcontainer.json up to date
+  - package-ecosystem: "devcontainers"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
