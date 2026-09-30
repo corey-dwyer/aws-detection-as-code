@@ -60,3 +60,7 @@ __pycache__/
 # OS / editor
 .DS_Store
 .vscode/
+
+# Terraform backend config (contains account-specific bucket name)
+backend.hcl
+!backend.hcl.example
