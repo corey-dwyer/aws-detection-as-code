@@ -7,3 +7,4 @@ A short record of significant technical decisions for this project: the situatio
 - [0003: Use IAM Identity Center for Human Access to AWS](0003-human-access-via-iam-identity-center.md)
 - [0004: Store Terraform State Remotely in S3 with Native Locking](0004-terraform-remote-state-in-s3.md)
 - [0005: Authenticate GitHub Actions to AWS via OIDC Federation](0005-github-actions-aws-oidc.md)
+- [0006: Apply Privileged Terraform Configurations Manually, Never from CI](0006-manual-apply-for-privileged-terraform.md)
