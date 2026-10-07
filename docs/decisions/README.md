@@ -9,3 +9,4 @@ A short record of significant technical decisions for this project: the situatio
 - [0005: Authenticate GitHub Actions to AWS via OIDC Federation](0005-github-actions-aws-oidc.md)
 - [0006: Apply Privileged Terraform Configurations Manually, Never from CI](0006-manual-apply-for-privileged-terraform.md)
 - [0007: Constrain the AI Coding Agent to File Edits, with No Direct Git or AWS Access](0007-ai-agent-boundaries.md)
+- [0008: Scope Detection Coverage to the MITRE ATT&CK v19 IaaS Matrix](0008-scope-to-attack-v19-iaas-matrix.md)
