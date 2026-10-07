@@ -13,3 +13,4 @@ A short record of significant technical decisions for this project: the situatio
 - [0009: Separate Log Archive, Security Tooling, and Target Accounts](0009-separate-log-archive-security-tooling-and-target-accounts.md) *(partially superseded by 0011)*
 - [0010: Use a Disposable OpenSearch SIEM with Replayable Ingestion](0010-disposable-opensearch-siem-with-replayable-ingestion.md)
 - [0011: Run Organization-Wide Security Services from a Dedicated Account Managed in a Separate Repository](0011-shared-security-baseline-in-dedicated-account-and-repository.md)
+- [0012: Divide Terraform Root Configurations by Apply Mode, Lifecycle, and Account](0012-terraform-root-configuration-layout.md)
