@@ -1,0 +1,19 @@
+# 0011: Run Organization-Wide Security Services from a Dedicated Account Managed in a Separate Repository
+
+## Status
+Accepted. Partially supersedes 0009: this project's account is no longer the delegated administrator for CloudTrail and GuardDuty, and the log archive is no longer managed from this repository.
+
+## Context
+ADR 0009 made this project's existing account the delegated administrator for CloudTrail and GuardDuty, and introduced a log archive account shared across the Organization. These services cover every account in the Organization, including future projects, so their configuration is shared infrastructure rather than part of this project. GuardDuty allows a single delegated administrator per Organization, used in every Region, so the account holding that role effectively owns GuardDuty for all projects. Changing it later is non-destructive: CloudTrail organization trails remain owned by the management account when the delegated administrator changes, and GuardDuty remains enabled in member accounts. Organization-level settings, such as accounts, organizational units, trusted service access, and delegated administrator registrations, also apply across projects. Keeping shared configuration in one project's repository would tie every other project to that project's lifecycle.
+
+## Decision
+A dedicated shared security account in the Security organizational unit is the delegated administrator for CloudTrail and GuardDuty, and administers the organization trail and GuardDuty's organization configuration. The shared security account and the log archive account are managed with Terraform in a separate repository dedicated to the Organization's shared security baseline (`aws-org-security-baseline`). That repository's configurations are applied only by a human operator, it has no CI access to AWS, and its state is stored in its own bucket in the shared security account. Organization structure (accounts, organizational units, trusted service access, delegated administrator registrations, and Identity Center assignments) is configured manually in the management account by following a documented procedure. This project's account keeps the Terraform state, the CI trust, and the SIEM. New-object notifications from the log archive bucket are published to a notification topic owned by the shared baseline, to which each project subscribes its own queue. This repository receives the shared baseline's outputs, such as the log bucket and topic identifiers, as input variables and does not read its state.
+
+## Consequences
+- Organization-wide logging and threat detection no longer depend on this project; this project can be torn down without affecting them.
+- The Organization gains one more account, with its own identity assignment and budget.
+- Organization structure is not defined in code, so drift is not detected automatically and correctness depends on the documented procedure. It can be moved into the shared baseline repository later.
+- This project cannot be fully deployed until the shared baseline exists, and changes to the interface between the two repositories must be made in a coordinated order.
+- Projects subscribe to log notifications independently, so adding or removing a project never changes the log archive bucket's configuration.
+- No pipeline can modify the shared logging or detection services; every change to them is a deliberate, manual apply.
+- This project's detection coverage depends on the shared baseline continuing to provide the logging it relies on, including S3 data events. A change to the baseline can remove visibility here without any change to this repository.

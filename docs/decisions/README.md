@@ -10,6 +10,6 @@ A short record of significant technical decisions for this project: the situatio
 - [0006: Apply Privileged Terraform Configurations Manually, Never from CI](0006-manual-apply-for-privileged-terraform.md)
 - [0007: Constrain the AI Coding Agent to File Edits, with No Direct Git or AWS Access](0007-ai-agent-boundaries.md)
 - [0008: Scope Detection Coverage to the MITRE ATT&CK v19 IaaS Matrix](0008-scope-to-attack-v19-iaas-matrix.md)
-- [0009: Separate Log Archive, Security Tooling, and Target Accounts](0009-separate-log-archive-security-tooling-and-target-accounts.md)
+- [0009: Separate Log Archive, Security Tooling, and Target Accounts](0009-separate-log-archive-security-tooling-and-target-accounts.md) *(partially superseded by 0011)*
 - [0010: Use a Disposable OpenSearch SIEM with Replayable Ingestion](0010-disposable-opensearch-siem-with-replayable-ingestion.md)
-
+- [0011: Run Organization-Wide Security Services from a Dedicated Account Managed in a Separate Repository](0011-shared-security-baseline-in-dedicated-account-and-repository.md)
